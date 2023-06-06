@@ -1,0 +1,36 @@
+#pragma once
+#include <cuda_runtime.h>
+#include <cublas_v2.h>
+#include <thrust/device_vector.h>
+void sample(int32_t* cur_node_buf,
+            int cur_num_nodes,
+            int32_t* &next_node_buf,
+            int next_num_nodes,
+            int sample_size,
+            int32_t *node_device,
+            int32_t *edge_csr_indptr,
+            int32_t *edge_csr_indices,
+            int* GPU_csr_indptr,
+            int* CPU_csr_indptr,
+            int32_t* &ALL_csr_indptr,
+            int32_t* &ALL_csr_indices,
+            float* &ALL_csr_value,
+            int32_t *int_buf,
+            float   *float_buf,
+            cudaStream_t stream);
+void get_csr(int cur_num_nodes,
+             int32_t *next_node_buf, 
+             int sample_size,
+             int32_t* GPU_csr_indptr,
+             int32_t* CPU_csr_indptr,
+             int32_t* &GPU_csr_indices,
+             int32_t* &CPU_csr_indices,
+             float* &GPU_csr_value,
+             float* &CPU_csr_value,
+             int next_GPU_nodes_num,
+             int next_CPU_nodes_num,
+             int32_t* &next_GPU_node_buf,
+             int32_t* &next_CPU_node_buf,
+             int32_t *int_buf,
+             float *float_buf,
+             cudaStream_t stream);
